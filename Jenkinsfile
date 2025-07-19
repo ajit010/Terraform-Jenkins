@@ -8,9 +8,9 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout([$class: 'GitSCM',
-                    branches: [[name: '*/main']], // or '*/master'
+                    branches: [[name: 'main']], // or '*/master'
                     userRemoteConfigs: [[
-                        url: 'https://github.com/ajit010/AWS-Jenkins.git',
+                        url: 'https://github.com/ajit010/Terraform-Jenkins.git',
                         credentialsId: 'github-credentials-id'
                     ]]
                 ])
