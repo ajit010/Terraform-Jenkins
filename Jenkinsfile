@@ -7,9 +7,15 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/ajit0101/Terraform-Jenkins.git'
+                checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main']], // or '*/master'
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/ajit010/AWS-Jenkins.git',
+                        credentialsId: 'github-credentials-id'
+                    ]]
+                ])
             }
-         }
+        }
     
         stage('Terraform Init') {
             steps {
