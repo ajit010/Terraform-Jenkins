@@ -7,8 +7,15 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/yourusername/terraform-aws-demo.git'
+                checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main']], // or '*/master'
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/ajit010/Terraform-Jenkins.git',
+                        credentialsId: 'github-credentials-id'
+                    ]]
+                ])
             }
+         }
         }
         stage('Terraform Init') {
             steps {
